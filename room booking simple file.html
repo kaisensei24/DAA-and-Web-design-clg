@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Room Booking Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        form {
+            width: 300px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="email"], input[type="date"], select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"], input[type="reset"] {
+            padding: 10px 15px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body background="C:\Users\dranz\OneDrive\Desktop\IGNOU\PREVIOUS QPAP\wallpapersden.com_sukuna-4k-jujutsu-kaisen-art_3840x2160.jpg">
+    <h2>Hostel Room Booking Form</h2>
+    <form id="bookingForm" onsubmit="return validateForm()">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName">
+        <span class="error" id="firstNameError"></span>
+        
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName">
+        <span class="error" id="lastNameError"></span>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <span class="error" id="emailError"></span>
+
+        <label for="arrivalDate">Arrival Date:</label>
+        <input type="date" id="arrivalDate" name="arrivalDate">
+        <span class="error" id="arrivalDateError"></span>
+
+        <label for="departureDate">Departure Date:</label>
+        <input type="date" id="departureDate" name="departureDate">
+        <span class="error" id="departureDateError"></span>
+
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option value="">Select Country</option>
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="Australia">Australia</option>
+        </select>
+        <span class="error" id="countryError"></span>
+
+        <label>Payment Mode:</label>
+        <input type="checkbox" id="debitCard" name="paymentMode" value="Debit Card"> Debit Card
+        <input type="checkbox" id="creditCard" name="paymentMode" value="Credit Card"> Credit Card
+        <span class="error" id="paymentModeError"></span>
+
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+
+    <script>
+        function validateForm() {
+            // Get form values
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var email = document.getElementById("email").value;
+            var arrivalDate = document.getElementById("arrivalDate").value;
+            var departureDate = document.getElementById("departureDate").value;
+            var country = document.getElementById("country").value;
+            var debitCard = document.getElementById("debitCard").checked;
+            var creditCard = document.getElementById("creditCard").checked;
+
+            // Clear previous error messages
+            document.getElementById("firstNameError").textContent = "";
+            document.getElementById("lastNameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("arrivalDateError").textContent = "";
+            document.getElementById("departureDateError").textContent = "";
+            document.getElementById("countryError").textContent = "";
+            document.getElementById("paymentModeError").textContent = "";
+
+            var isValid = true;
+
+            // Validate First Name
+            if (firstName === "") {
+                document.getElementById("firstNameError").textContent = "First Name is required.";
+                isValid = false;
+            }
+
+            // Validate Last Name
+            if (lastName === "") {
+                document.getElementById("lastNameError").textContent = "Last Name is required.";
+                isValid = false;
+            }
+
+            // Validate Email
+            if (email === "") {
+                document.getElementById("emailError").textContent = "Email is required.";
+                isValid = false;
+            }
+
+            // Validate Arrival Date
+            if (arrivalDate === "") {
+                document.getElementById("arrivalDateError").textContent = "Arrival Date is required.";
+                isValid = false;
+            }
+
+            // Validate Departure Date
+            if (departureDate === "") {
+                document.getElementById("departureDateError").textContent = "Departure Date is required.";
+                isValid = false;
+            }
+
+            // Validate Country
+            if (country === "") {
+                document.getElementById("countryError").textContent = "Country is required.";
+                isValid = false;
+            }
+
+            // Validate Payment Mode
+            if (!debitCard && !creditCard) {
+                document.getElementById("paymentModeError").textContent = "Please select a payment mode.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
